@@ -1,0 +1,35 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Faire le ménage",
+      "done": false
+    },
+    {
+      "id": 2,
+      "title": "Sociabiliser",
+      "done": false
+    },
+    {
+      "id": 3,
+      "title": "Faire les courses",
+      "done": false
+    },
+    {
+      "id": 4,
+      "title": "Faire le ménage",
+      "done": false
+    },
+    {
+      "id": 5,
+      "title": "Tondre la pelouse",
+      "done": false
+    },
+    {
+      "id": 6,
+      "title": "Faire à manger",
+      "done": false
+    }
+   
+  ]
+}
