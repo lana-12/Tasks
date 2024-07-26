@@ -5,7 +5,7 @@ Develop By Virginie Giacometti
 ## Initialization
 
 ```bash
-git clone 
+git clone https://github.com/lana-12/Tasks.git
 ```
 
 
