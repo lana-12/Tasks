@@ -14,6 +14,7 @@ npm install
 npm install sass
 npm install redux react-redux
 npm install --save-dev json-server
+npm i react-axios
 ```
 
 
@@ -24,5 +25,7 @@ npm install --save-dev json-server
 npm start
 json-server --watch db.json --port 3001
 ```
+
+
 
 

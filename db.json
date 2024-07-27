@@ -3,7 +3,7 @@
     {
       "id": 1,
       "title": "Faire le ménage",
-      "done": false
+      "done": true
     },
     {
       "id": 2,
@@ -23,13 +23,17 @@
     {
       "id": 5,
       "title": "Tondre la pelouse",
-      "done": false
+      "done": true
     },
     {
       "id": 6,
       "title": "Faire à manger",
+      "done": true
+    },
+    {
+      "id": 7,
+      "title": "encore",
       "done": false
     }
-   
   ]
 }
