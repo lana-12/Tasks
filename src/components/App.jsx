@@ -9,24 +9,31 @@ import Task from './Task';
 function App() {
 
   //UseSelector => permet de récupérer le "state" se qui a dans le store
+  const tasks = useSelector((state) => state.taskReducer) || []; 
 
-  const tasks = useSelector((state)=> state.taskReducer); 
-  console.log(tasks);
-
-
+  // Trie
+  const sortedTasks = Array.isArray(tasks)
+    ? [...tasks].sort((a, b) => {
+      if (a.done !== b.done) {
+        return a.done ? 1 : -1;
+      }
+      return a.title.localeCompare(b.title);
+    })
+    : [];
 
   return (
     <div className="container">
-      <h1 className='text-center'>Gestionnaire de tâches</h1>
-
-      <FormTask />
-
+      <h1 className='text-center titleReact'>Gestionnaire de tâches</h1>
+          <FormTask />
       <section className='container'>
         <div className="task-container">
-
-          {tasks && Array.isArray(tasks) && tasks.map((task, index) => (
-            <Task task={task} key={index} />
-          ))}
+          {sortedTasks.length > 0 ? (
+            sortedTasks.map((task) => (
+              <Task task={task} key={task.id} />
+            ))
+          ) : (
+            <p>Aucune tâche à afficher</p> 
+          )}
 
         </div>
       </section>
