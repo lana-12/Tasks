@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { deleteTask, editTask } from "../actions/task.action"
 import { useDispatch, useSelector } from "react-redux";
+
+import Swal from 'sweetalert2';
 
 const Task = ({ task  }) => {
     // Dispatch dans le store, on envoi les data
@@ -8,31 +9,38 @@ const Task = ({ task  }) => {
     // Récupérer les tâches depuis le store
     const tasks = useSelector((state) => state.taskReducer);
 
+    
+    const onClickDone = (taskId) => {
+        const updatedTasks = tasks.map((task) => {
+            if (task.id === taskId) {
+                return { ...task, done: !task.done };
+            }
+            return task;
+        });
+        const taskData = updatedTasks.find(task => task.id === taskId);
+        dispatch(editTask(taskData));
+    };
 
-
-
-    const onClickDone = (id)=> {
-        console.log(`Cliquer sur btn pour la tâche avec l'ID: ${id}`);
+    const onClickDelete = (id)=> {
+        Swal.fire({
+            title: 'Vous confirmez la suppression?',
+            text: "Cette action est irréversible !",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Oui, supprime-le !'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Supprimé!',
+                    'Votre t$ache a été supprimé.',
+                    'success'
+                );
+                dispatch(deleteTask(id))
+            }
+        });
         
-
-        // const taskData = {
-        //     id: id,
-        //     title: task.title,
-        //     done: task.done ? true : false
-        // };
-
-        // dispatch(editTask(taskData));
-
-
-        // const copy_tasks = [...tasks];
-        // copy_tasks.forEach((task) => {
-        //     if (task.id === task_id) task.done = !task.done;
-        // })
-    }
-
-    const onClickDelete =  (id)=> {
-        console.log(`Cliquer sur delete pour la tâche avec l'ID: ${id}`);
-        dispatch(deleteTask(id))
     }
 
     return (

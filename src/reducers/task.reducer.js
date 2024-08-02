@@ -20,14 +20,9 @@ export default function taskReducer(state = initialState, action){
             return [action.payload, ...state];
 
         case EDIT_TASK:
-            return state.map((task)=> {
-                if(task.id === action.payload.id) {
-                    return {
-                        ...task,
-                        done: action.payload.done
-                    }
-                }
-            })
+            return state.map((task) =>
+                task.id === action.payload.id ? { ...task, ...action.payload } : task
+            );
 
         case DELETE_TASK:
             return state.filter((task) => task.id != action.payload) 

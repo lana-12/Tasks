@@ -8,61 +8,66 @@ export const EDIT_TASK = "EDIT_TASK";
 export const getTasks = () => {
 
     return (dispatch) => {
-        return axios.get("http://localhost:3001/tasks").then((res)=> {
-            console.log(res);
-            dispatch({
-                type: GET_TASKS,
-                payload: res.data
+        return axios.get("http://localhost:3001/tasks")
+            .then((res)=> {
+                //console.log(res);
+                dispatch({
+                    type: GET_TASKS,
+                    payload: res.data
+                })
             })
-        })
-
+            .catch(error => {
+                console.error("Error getTasks", error);
+            });
     }
 }
 
 export const addTask = (data) => {
-
     return (dispatch) => {
-        return axios.post("http://localhost:3001/tasks", data).then((res) => {
-            console.log(res);
-            dispatch({
-                type: ADD_TASK,
-                payload: res.data
-            })
+        return axios.post("http://localhost:3001/tasks", data)
+            .then((res) => {
+                //console.log(res);
+                dispatch({
+                    type: ADD_TASK,
+                    payload: res.data
+                })
             
-        })
-
+             })
+            .catch(error => {
+                console.error("Error AddTask", error);
+            });
     }
-
 }
 
 
 export const deleteTask = (taskId) => {
     return (dispatch) => {
         return axios.delete(`http://localhost:3001/tasks/${taskId}`).then((res) => {
-            console.log(res);
+            //console.log(res);
             dispatch({
                 type: DELETE_TASK,
                 payload: taskId
-            });
-        }).catch(error => {
-            console.error("Failed to delete task:", error);
+                });
+            })
+            .catch(error => {
+                console.error("Error deleteTask", error);
         });
     };
 };
 
 
 export const editTask = (data) => {
-
     return (dispatch) => {
         return axios.put(`http://localhost:3001/tasks/${data.id}`, data).then((res) => {
-            console.log(res);
-            dispatch({
-                type: EDIT_TASK,
-                payload: res.data
+                //console.log(res);
+                dispatch({
+                    type: EDIT_TASK,
+                    payload: res.data
+                })
             })
-
-        })
-
+            .catch(error => {
+                console.error("Error editTask", error);
+            });
     }
 };
    
